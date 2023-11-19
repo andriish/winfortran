@@ -50,7 +50,6 @@ jobs:
     - name: Install 
       run: |
           Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
-          ninja --version
           ninja-build --version
     - name: Compile
       run: |
