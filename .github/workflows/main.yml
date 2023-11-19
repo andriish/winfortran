@@ -42,8 +42,8 @@ jobs:
 
 
   compilejobWIN:
-    runs-on: win-latest
-    name: WINFORTRAN_on_OSX
+    runs-on: windows-latest
+    name: WINFORTRAN_on_WIN
     steps:
     - name: Checkout
       uses: actions/checkout@v3
