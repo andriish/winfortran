@@ -49,14 +49,14 @@ jobs:
       uses: actions/checkout@v3
     - name: Install 
       run: |
-          Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
+          Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O C:\output\ftn95_personal.exe
           Invoke-WebRequest https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip -O ninja-win.zip
           Expand-Archive -Path ninja-win.zip -DestinationPath C:\output
           dir C:\output
           C:\output\ninja.exe --version
     - name: Compile
       run: |
-          cmake -S . -B BUILD   -G Ninja -DCMAKE_Fortran_COMPILER=ftn95_personal.exe -DCMAKE_MAKE_PROGRAM=C:\output\ninja.exe
+          cmake -S . -B BUILD   -G Ninja -DCMAKE_Fortran_COMPILER=C:\output\ftn95_personal.exe -DCMAKE_MAKE_PROGRAM=C:\output\ninja.exe
           cmake --build BUILD -j 2
           cmake --install BUILD
 
