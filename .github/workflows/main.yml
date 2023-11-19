@@ -16,8 +16,9 @@ jobs:
       uses: actions/checkout@v3
     - name: Install 
       run: |
-          Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
+          mkdir C:\outputs
+          Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O C:\outputs\ftn95_personal.exe
     - name: Compile
       run: |
-          ftn95_personal.exe main.f
+          C:\outputs\ftn95_personal.exe main.f
 
