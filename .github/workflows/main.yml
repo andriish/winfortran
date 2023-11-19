@@ -54,6 +54,7 @@ jobs:
       run: scripts/install_windows.bat $WINDOWS_HPCKIT_URL $WINDOWS_FORTRAN_COMPONENTS
     - name: build
       run: |
+          "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
           cmake -S . -B BUILD
           cmake --build BUILD -j 2
           cmake --install BUILD
