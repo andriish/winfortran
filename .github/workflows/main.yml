@@ -45,17 +45,12 @@ jobs:
     runs-on: windows-latest
     name: WINFORTRAN_on_WIN
     steps:
-    - name: Setup Ninja
-      uses: ashutoshvarma/setup-ninja@master
-      with:
-          # ninja version to download. Default: 1.10.0
-          version: 1.10.0
     - name: Checkout
       uses: actions/checkout@v3
     - name: Install 
       run: |
           Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
- #         vcpkg install ninja-build
+          vcpkg install vcpkg-tool-ninja
     - name: Compile
       run: |
           cmake -S . -B BUILD   -G Ninja -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=ftn95_personal.exe
