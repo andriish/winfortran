@@ -20,7 +20,7 @@ jobs:
            yum -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem
     - name: Compile
       run: |
-          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL
+          cmake -S . -B BUILD 
           cmake --build BUILD -j
           cmake --install BUILD
 
@@ -36,7 +36,7 @@ jobs:
           brew install wget coreutils gcc
     - name: Compile
       run: |
-          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=gfortran-13
+          cmake -S . -B BUILD  -DCMAKE_Fortran_COMPILER=gfortran-13
           cmake --build BUILD -j 2
           cmake --install BUILD
 
@@ -53,7 +53,7 @@ jobs:
           vcpkg install vcpkg-tool-ninja
     - name: Compile
       run: |
-          cmake -S . -B BUILD   -G Ninja -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=ftn95_personal.exe -DCMAKE_MAKE_PROGRAM=ninja-build
+          cmake -S . -B BUILD   -G Ninja -DCMAKE_Fortran_COMPILER=ftn95_personal.exe -DCMAKE_MAKE_PROGRAM=ninja-build
           cmake --build BUILD -j 2
           cmake --install BUILD
 
