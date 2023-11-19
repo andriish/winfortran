@@ -51,6 +51,7 @@ jobs:
       run: |
           Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
           vcpkg install vcpkg-tool-ninja
+          dir C:/vcpkg/packages/vcpkg-tool-ninja_x64-windows/
     - name: Compile
       run: |
           cmake -S . -B BUILD   -G Ninja -DCMAKE_Fortran_COMPILER=ftn95_personal.exe -DCMAKE_MAKE_PROGRAM=ninja-build
