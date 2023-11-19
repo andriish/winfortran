@@ -1,0 +1,58 @@
+name: build
+on:
+ push:
+ pull_request:
+ schedule:
+#Every 50 days at midnight 
+    - cron:  "0 0 1/600 * *"
+
+jobs:
+  compilejobFedora:
+    name: WINFORTRAN_on_Fedora
+    runs-on: ubuntu-latest
+    container:
+        image: fedora:latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install 
+      run: |
+           yum -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem
+    - name: Compile
+      run: |
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL
+          cmake --build BUILD -j
+          cmake --install BUILD
+
+
+  compilejobOSX:
+    runs-on: macos-latest
+    name: WINFORTRAN_on_OSX
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install 
+      run: |
+          brew install wget coreutils gcc
+    - name: Compile
+      run: |
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=gfortran-13
+          cmake --build BUILD -j 2
+          cmake --install BUILD
+
+
+  compilejobWIN:
+    runs-on: win-latest
+    name: WINFORTRAN_on_OSX
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install 
+      run: |
+          Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
+    - name: Compile
+      run: |
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=ftn95_personal.exe
+          cmake --build BUILD -j 2
+          cmake --install BUILD
+
