@@ -50,7 +50,7 @@ jobs:
     - name: Install 
       run: |
           Invoke-WebRequest https://www.ftn95.co.uk/ftn95/ftn95-8.95/ftn95_personal.exe -O ftn95_personal.exe
-          vcpkg install ninja
+          vcpkg install ninja-build
     - name: Compile
       run: |
           cmake -S . -B BUILD   -G Ninja -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL -DCMAKE_Fortran_COMPILER=ftn95_personal.exe
